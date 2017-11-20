@@ -1,0 +1,41 @@
+package com.zhuye.zhengmeng.user;
+
+import android.content.Context;
+
+import com.zhuye.zhengmeng.R;
+import com.zhuye.zhengmeng.base.BaseActivity;
+import com.zhuye.zhengmeng.view.MyAppTitle;
+
+import butterknife.BindView;
+
+/**
+ * 我的礼物
+ */
+public class MyGiftActivity extends BaseActivity {
+
+
+    @BindView(R.id.titleBar)
+    MyAppTitle titleBar;
+
+    @Override
+    protected void processLogic() {
+
+    }
+
+    @Override
+    protected void setListener() {
+        titleBar.setAppTitle("我的礼物");
+    }
+
+    @Override
+    protected void loadViewLayout() {
+        setContentView(R.layout.activity_my_gift);
+    }
+
+    @Override
+    protected Context getActivityContext() {
+        return this;
+    }
+
+
+}

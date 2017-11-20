@@ -1,0 +1,135 @@
+package com.zhuye.zhengmeng.home.fragment;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.zhuye.zhengmeng.R;
+import com.zhuye.zhengmeng.base.BaseFragment;
+import com.zhuye.zhengmeng.user.LocalRecordActivity;
+import com.zhuye.zhengmeng.user.MyCollectActivity;
+import com.zhuye.zhengmeng.user.MyGiftActivity;
+import com.zhuye.zhengmeng.user.MyGoldActivity;
+import com.zhuye.zhengmeng.user.MyShareActivity;
+import com.zhuye.zhengmeng.widget.RoundedCornerImageView;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
+/**
+ * Created by hpc on 2017/10/26.
+ */
+
+public class MeFragment extends BaseFragment implements View.OnClickListener {
+    @BindView(R.id.avatar)
+    RoundedCornerImageView avatar;
+    @BindView(R.id.nickname)
+    TextView nickname;
+    @BindView(R.id.btn_sign)
+    TextView btnSign;
+    @BindView(R.id.tag_vip)
+    ImageView tagVip;
+    @BindView(R.id.tv_follow)
+    TextView tvFollow;
+    @BindView(R.id.tv_fans)
+    TextView tvFans;
+    @BindView(R.id.tv_message)
+    TextView tvMessage;
+    @BindView(R.id.iv_local_record)
+    ImageView ivLocalRecord;
+    @BindView(R.id.tv_local_record)
+    TextView tvLocalRecord;
+    @BindView(R.id.rl_local_record)
+    RelativeLayout rlLocalRecord;
+    @BindView(R.id.iv_my_collect)
+    ImageView ivMyCollect;
+    @BindView(R.id.tv_my_collect)
+    TextView tvMyCollect;
+    @BindView(R.id.rl_my_collect)
+    RelativeLayout rlMyCollect;
+    @BindView(R.id.iv_comment_reply)
+    ImageView ivCommentReply;
+    @BindView(R.id.tv_comment_reply)
+    TextView tvCommentReply;
+    @BindView(R.id.rl_comment_reply)
+    RelativeLayout rlCommentReply;
+    @BindView(R.id.iv_my_gift)
+    ImageView ivMyGift;
+    @BindView(R.id.tv_my_gift)
+    TextView tvMyGift;
+    @BindView(R.id.rl_my_gift)
+    RelativeLayout rlMyGift;
+    @BindView(R.id.iv_my_gold)
+    ImageView ivMyGold;
+    @BindView(R.id.tv_my_gold)
+    TextView tvMyGold;
+    @BindView(R.id.rl_my_gold)
+    RelativeLayout rlMyGold;
+    @BindView(R.id.iv_my_share)
+    ImageView ivMyShare;
+    @BindView(R.id.tv_my_share)
+    TextView tvMyShare;
+    @BindView(R.id.rl_my_share)
+    RelativeLayout rlMyShare;
+    Unbinder unbinder;
+
+    @Override
+    protected View initView(LayoutInflater inflater, ViewGroup container) {
+        return inflater.inflate(R.layout.fragment_me, container, false);
+    }
+
+    @Override
+    protected void initListener() {
+        rlMyGift.setOnClickListener(this);
+        rlLocalRecord.setOnClickListener(this);
+        rlMyCollect.setOnClickListener(this);
+        rlMyShare.setOnClickListener(this);
+        rlMyGold.setOnClickListener(this);
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        unbinder = ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.rl_my_gift:
+                startActivity(new Intent(getActivity(), MyGiftActivity.class));
+                break;
+            case R.id.rl_my_gold:
+                startActivity(new Intent(getActivity(), MyGoldActivity.class));
+                break;
+            case R.id.rl_local_record:
+                startActivity(new Intent(getActivity(), LocalRecordActivity.class));
+                break;
+            case R.id.rl_my_collect:
+                startActivity(new Intent(getActivity(), MyCollectActivity.class));
+                break;
+            case R.id.rl_my_share:
+                startActivity(new Intent(getActivity(), MyShareActivity.class));
+                break;
+        }
+    }
+}

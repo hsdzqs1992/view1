@@ -1,0 +1,33 @@
+package com.zhuye.zhengmeng.user;
+
+import android.content.Context;
+
+import com.zhuye.zhengmeng.R;
+import com.zhuye.zhengmeng.base.BaseActivity;
+
+/**
+ * 我的收藏
+ */
+public class MyCollectActivity extends BaseActivity {
+
+
+    @Override
+    protected void processLogic() {
+
+    }
+
+    @Override
+    protected void setListener() {
+
+    }
+
+    @Override
+    protected void loadViewLayout() {
+        setContentView(R.layout.activity_my_collect);
+    }
+
+    @Override
+    protected Context getActivityContext() {
+        return this;
+    }
+}

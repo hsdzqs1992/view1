@@ -1,0 +1,33 @@
+package com.zhuye.zhengmeng.user;
+
+import android.content.Context;
+
+import com.zhuye.zhengmeng.R;
+import com.zhuye.zhengmeng.base.BaseActivity;
+
+/**
+ * 我的消息
+ */
+public class MyMessageActivity extends BaseActivity {
+
+
+    @Override
+    protected void processLogic() {
+
+    }
+
+    @Override
+    protected void setListener() {
+
+    }
+
+    @Override
+    protected void loadViewLayout() {
+        setContentView(R.layout.activity_my_message);
+    }
+
+    @Override
+    protected Context getActivityContext() {
+        return this;
+    }
+}

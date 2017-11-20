@@ -1,0 +1,81 @@
+package com.zhuye.zhengmeng.home.fragment;
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.zhuye.zhengmeng.DataProvider;
+import com.zhuye.zhengmeng.R;
+import com.zhuye.zhengmeng.base.BaseNoFragment;
+import com.zhuye.zhengmeng.home.adapter.BGABannerAdapter;
+import com.zhuye.zhengmeng.home.bean.BannerDto;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+import cn.bingoogolapple.bgabanner.BGABanner;
+
+/**
+ * Created by hpc on 2017/10/26.
+ */
+
+public class BangDanFragment extends BaseNoFragment {
+    @BindView(R.id.home_recommend_banner)
+    BGABanner homeRecommendBanner;
+    @BindView(R.id.platform_songs)
+    TextView platformSongs;
+    @BindView(R.id.platform_competition)
+    TextView platformCompetition;
+    @BindView(R.id.tv_quanguobang)
+    TextView tvQuanguobang;
+    @BindView(R.id.tv_quyubang)
+    TextView tvQuyubang;
+    Unbinder unbinder;
+
+    @Override
+    protected View initView(LayoutInflater inflater, ViewGroup container) {
+        return inflater.inflate(R.layout.fragment_bangdan, container, false);
+    }
+
+    @Override
+    protected void initListener() {
+
+    }
+
+    @Override
+    protected void initData() {
+        getBannerData();
+    }
+
+    private void getBannerData() {
+        homeRecommendBanner.setAdapter(new BGABannerAdapter(getActivity()));
+        ArrayList<BannerDto> pictures = DataProvider.getPictures();
+        List<String> bannerTitle = new ArrayList<String>();
+        List<String> bannerImage = new ArrayList<String>();
+        for (int i = 0; i < pictures.size(); i++) {
+            bannerTitle.add(pictures.get(i).getBannerTitle());
+            bannerImage.add(pictures.get(i).getImageUrl());
+        }
+        homeRecommendBanner.setData(bannerImage, bannerTitle);
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        unbinder = ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+}

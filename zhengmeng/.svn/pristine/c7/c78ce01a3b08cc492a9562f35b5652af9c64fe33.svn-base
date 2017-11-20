@@ -1,0 +1,96 @@
+package com.zhuye.zhengmeng.user;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.view.View;
+
+import com.zhuye.zhengmeng.R;
+import com.zhuye.zhengmeng.base.BaseActivity;
+import com.zhuye.zhengmeng.home.fragment.SingFragment;
+import com.zhuye.zhengmeng.user.fragment.ReceiveFragment;
+import com.zhuye.zhengmeng.user.fragment.SendFragment;
+import com.zhuye.zhengmeng.view.MyAppTitle;
+
+import java.util.ArrayList;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+/**
+ * 我的礼物
+ */
+public class MyGiftActivity extends BaseActivity {
+
+
+    @BindView(R.id.titleBar)
+    MyAppTitle titleBar;
+    @BindView(R.id.tab)
+    TabLayout tab;
+    @BindView(R.id.viewpager)
+    ViewPager viewpager;
+
+    @Override
+    protected void processLogic() {
+
+    }
+
+    @Override
+    protected void setListener() {
+        titleBar.setAppTitle("我的礼物");
+        titleBar.initViewsVisible(true,true,false,false);
+        titleBar.setOnLeftButtonClickListener(new MyAppTitle.OnLeftButtonClickListener() {
+            @Override
+            public void onLeftButtonClick(View v) {
+                finish();
+            }
+        });
+        final ArrayList<Fragment> fragments = new ArrayList<>();
+        fragments.add(new ReceiveFragment());
+        fragments.add(new SendFragment());
+        viewpager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
+            @Override
+            public Fragment getItem(int position) {
+                return fragments.get(position);
+            }
+
+            @Override
+            public int getCount() {
+                return fragments.size();
+            }
+
+            @Override
+            public CharSequence getPageTitle(int position) {
+                switch (position) {
+                    case 0:
+                        return "我收到的";
+                    case 1:
+                        return "我送出的";
+                }
+                return null;
+            }
+        });
+        tab.setupWithViewPager(viewpager, true);
+    }
+
+    @Override
+    protected void loadViewLayout() {
+        setContentView(R.layout.activity_my_gift);
+    }
+
+    @Override
+    protected Context getActivityContext() {
+        return this;
+    }
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
+}

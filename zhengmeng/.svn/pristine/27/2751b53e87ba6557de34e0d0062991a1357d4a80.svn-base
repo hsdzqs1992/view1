@@ -1,0 +1,33 @@
+package com.zhuye.zhengmeng.user;
+
+import android.content.Context;
+
+import com.zhuye.zhengmeng.R;
+import com.zhuye.zhengmeng.base.BaseActivity;
+
+/**
+ * 本地录音
+ */
+public class LocalRecordActivity extends BaseActivity {
+
+
+    @Override
+    protected void processLogic() {
+
+    }
+
+    @Override
+    protected void setListener() {
+
+    }
+
+    @Override
+    protected void loadViewLayout() {
+        setContentView(R.layout.activity_local_record);
+    }
+
+    @Override
+    protected Context getActivityContext() {
+        return this;
+    }
+}
