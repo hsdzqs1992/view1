@@ -3,23 +3,24 @@ package com.zhuye.hougong.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 import com.zhuye.hougong.R;
-import com.zhuye.hougong.bean.PersonDetailBean;
+import com.zhuye.hougong.bean.JiaoLiuBean;
 import com.zhuye.hougong.contants.Contants;
 import com.zhuye.hougong.http.MyCallback;
 import com.zhuye.hougong.utils.SpUtils;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -104,9 +105,9 @@ public class PersonHomePageActivity extends AppCompatActivity {
         initData();
     }
 
-    PersonDetailBean person;
+    JiaoLiuBean person;
     private void initData() {
-        OkGo.<String>post(Contants.personcenter)
+        OkGo.<String>post(Contants.communication)
                 .params("uid",uid)
                 .params("token", SpUtils.getString(PersonHomePageActivity.this,"token",""))
                 .execute(new MyCallback() {
@@ -119,16 +120,95 @@ public class PersonHomePageActivity extends AppCompatActivity {
                     protected void excuess(Response<String> response) {
                         String i = response.body();
                         Gson gson = new Gson();
-                        person= gson.fromJson(response.body(),PersonDetailBean.class);
-                        Log.i("-----",i);
-                        Glide.with(PersonHomePageActivity.this).load(Contants.BASE_URL+person.getData().getFace()).into(personHomeTouxiang);
+                        person= gson.fromJson(response.body(),JiaoLiuBean.class);
+                       //Log.i("-----",i);
+                       // Glide.with(PersonHomePageActivity.this).load(Contants.BASE_URL+person.getData().getFace()).into(personHomeTouxiang);
                         personHomeName.setText(person.getData().getNickname());
                         personHomeId.setText(person.getData().getUid());
                         personHomeAge.setText(person.getData().getAge());
                         personHomeDizhi.setText(person.getData().getCity());
 
+                        for (int j = 0 ; j< person.getData().getImg().size();j++){
+                            DefaultSliderView defaultSliderView = new DefaultSliderView(PersonHomePageActivity.this);
+                            defaultSliderView.image(Contants.BASE_URL+person.getData().getImg().get(j));
+                            if(personHomeSlider != null){
+                                personHomeSlider.addSlider(defaultSliderView);
+                            }
+                        }
+
+//                        Boolean ismeishi = false;
+//                        Boolean isyinyue = false;
+//                        Boolean isjiaoyou = false;
+//                        Boolean isqingting = false;
+                        StringBuffer sb = new StringBuffer();
+
+                        List<String> feature = person.getData().getFeature();
+                        if (feature != null && feature.size() >0 ){
+
+                            for (int k = 0 ; k<feature.size();k++){
+                                sb.append(feature.get(k));
+//                                if(feature.get(k).equals("美食")){
+//                                    //personHomeMeishi.setVisibility(View.GONE);
+                                // }
+                               }
+                               String fra = sb.toString();
+                          if(fra.contains("音乐") ){
+                              personHomeYinyue.setVisibility(View.VISIBLE);
+                          }else {
+                              personHomeYinyue.setVisibility(View.GONE);
+                          }
+                            if(fra.contains("美食") ){
+                                personHomeMeishi.setVisibility(View.VISIBLE);
+                            }else {
+                                personHomeMeishi.setVisibility(View.GONE);
+                            }
+                            if(fra.contains("交友") ){
+                                personHomeJiaoyou.setVisibility(View.VISIBLE);
+                            }else {
+                                personHomeJiaoyou.setVisibility(View.GONE);
+                            }
+                            if(fra.contains("倾听") ){
+                                personHomeQingting.setVisibility(View.VISIBLE);
+                            }else {
+                                personHomeQingting.setVisibility(View.GONE);
+                            }
+
+                            personHomeDongtaiShumu.setText("动态("+person.getData().getDynamic_count()+")");
+
+                            personHomeDongtaiTitle.setText(person.getData().getDynamic_content()+"没内容");
+                            personHomeLiwuShu.setText("礼物("+person.getData().getGift_count()+")");
+
+
+                        }
+
+
                     }
                 });
+
+
+//        OkGo.<String>post(Contants.personcenter)
+//                .params("uid",uid)
+//                .params("token", SpUtils.getString(PersonHomePageActivity.this,"token",""))
+//                .execute(new MyCallback() {
+//                    @Override
+//                    protected void doFailue() {
+//
+//                    }
+//
+//                    @Override
+//                    protected void excuess(Response<String> response) {
+//                        String i = response.body();
+//                        Gson gson = new Gson();
+//                        person= gson.fromJson(response.body(),PersonDetailBean.class);
+//                        Log.i("-----",i);
+//                        Glide.with(PersonHomePageActivity.this).load(Contants.BASE_URL+person.getData().getFace()).into(personHomeTouxiang);
+//                        personHomeName.setText(person.getData().getNickname());
+//                        personHomeId.setText(person.getData().getUid());
+//                        personHomeAge.setText(person.getData().getAge());
+//                        personHomeDizhi.setText(person.getData().getCity());
+//
+//                    }
+//                });
     }
 
 

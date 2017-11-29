@@ -1,7 +1,6 @@
 package com.zhuye.hougong.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,16 +33,15 @@ public class BlackNumberAdapter extends BaseRecycleAdapter {
     @Override
     protected void conver(BaseHolder holder, int position) {
 
-
         ((TextView)holder.getView(R.id.blacknumber_name)).setText(((MyFriendsBean.DataBean)data.get(position)).getNickname());
 
         ImageView iv =  ((ImageView) holder.getView(R.id.blacknumber_iv));
         Glide.with(conn).load(Contants.BASE_URL+((MyFriendsBean.DataBean)data.get(position)).getFace()).into(iv);
     }
 
-    @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-
-
-    }
+//    @Override
+//    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+//
+//
+//    }
 }

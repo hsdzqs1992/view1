@@ -47,9 +47,6 @@ public class GuanZhuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_guan_zhu);
         ButterKnife.bind(this);
         mywalotQianbao.setText("我的关注");
-
-
-
         guanZhuAdapter = new GuanZhuAdapter(this);
         guanzhuRecycleview.setAdapter(guanZhuAdapter);
         guanzhuRecycleview.setLayoutManager(new LinearLayoutManager(this));

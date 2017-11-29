@@ -61,10 +61,10 @@ public  class FindBaseAdapter extends BaseRecycleAdapter {
         ((TextView)holder.getView(R.id.find_zuixin_dianzan)).setText(((DongTaiBean.DataBean)data.get(position)).getZan()+"");
 
         //评论
-        ((TextView)holder.getView(R.id.find_zuixin_pinglun)).setText(((DongTaiBean.DataBean)data.get(position)).getPing_count()+"");
+//        ((TextView)holder.getView(R.id.find_zuixin_pinglun)).setText(((DongTaiBean.DataBean)data.get(position)).getPing_count()+"");
 
         //礼物
-        ((TextView)holder.getView(R.id.find_zuixin_liwu)).setText(((DongTaiBean.DataBean)data.get(position)).getGift());
+       // ((TextView)holder.getView(R.id.find_zuixin_liwu)).setText(((DongTaiBean.DataBean)data.get(position)).getGift());
 
         //自己是否点赞
 

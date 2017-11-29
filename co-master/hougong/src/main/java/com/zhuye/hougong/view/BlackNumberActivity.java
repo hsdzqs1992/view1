@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,9 +20,6 @@ import com.zhuye.hougong.http.MyCallback;
 import com.zhuye.hougong.utils.CommentUtils;
 import com.zhuye.hougong.utils.SpUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -29,51 +27,51 @@ import butterknife.OnClick;
 public class BlackNumberActivity extends AppCompatActivity {
 
 
-    @BindView(R.id.commot_recycle)
-    RecyclerView commotRecycle;
-    @BindView(R.id.common_material)
-    MaterialRefreshLayout commonMaterial;
     @BindView(R.id.person_detail_back)
-    ImageView personDetailBack;
-    @BindView(R.id.mywalot_zhuanqian)
-    TextView mywalotZhuanqian;
+    ImageView mPersonDetailBack;
+    @BindView(R.id.songliwu_tixian)
+    TextView mSongliwuTixian;
     @BindView(R.id.mywalot_qianbao)
-    TextView mywalotQianbao;
+    TextView mMywalotQianbao;
+    @BindView(R.id.commot_recycle)
+    RecyclerView mCommotRecycle;
+    @BindView(R.id.common_material)
+    MaterialRefreshLayout mCommonMaterial;
 
+    BlackNumberAdapter blackNumberAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.common_recycle2);
         ButterKnife.bind(this);
-        mywalotQianbao.setText("黑名单");
+        mMywalotQianbao.setText("黑名单");
+        mSongliwuTixian.setVisibility(View.INVISIBLE);
 
-        List list = new ArrayList();
-        for (int i = 0; i < 3; i++) {
-            list.add("sdfasdf" + i);
-        }
 
-        blackNumberAdapter= new BlackNumberAdapter(this);
+        blackNumberAdapter = new BlackNumberAdapter(this);
 
         initData();
-        commotRecycle.setAdapter(blackNumberAdapter);
-        commotRecycle.setLayoutManager(new LinearLayoutManager(this));
+        mCommotRecycle.setAdapter(blackNumberAdapter);
+        mCommotRecycle.setLayoutManager(new LinearLayoutManager(this));
     }
-    BlackNumberAdapter blackNumberAdapter;
+
+
+
     private void initData() {
         OkGo.<String>post(Contants.blacklist)
-                .params("token", SpUtils.getString(BlackNumberActivity.this,"token",""))
-                .params("page",1)
+                .params("token", SpUtils.getString(BlackNumberActivity.this, "token", ""))
+                .params("page", 1)
                 .execute(new MyCallback() {
                     @Override
                     protected void doFailue() {
-                        CommentUtils.toast(BlackNumberActivity.this,"sdf");
+                        CommentUtils.toast(BlackNumberActivity.this, "sdf");
                     }
 
                     @Override
                     protected void excuess(Response<String> response) {
                         String s = response.body();
                         Gson gson = new Gson();
-                        MyFriendsBean mybean = gson.fromJson(response.body(),MyFriendsBean.class);
+                        MyFriendsBean mybean = gson.fromJson(response.body(), MyFriendsBean.class);
                         //CommentUtils.toast(BlackNumberActivity.this,s);
                         blackNumberAdapter.addData(mybean.getData());
                     }
@@ -84,4 +82,5 @@ public class BlackNumberActivity extends AppCompatActivity {
     public void onViewClicked() {
         finish();
     }
+
 }

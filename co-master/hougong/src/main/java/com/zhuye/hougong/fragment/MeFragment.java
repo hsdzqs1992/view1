@@ -209,6 +209,7 @@ public class MeFragment extends Fragment {
                             meName.setText(personInfoBean.getData().getNickname());
 
                             tvFollow.setText(personInfoBean.getData().getInterest()+"\n关注");
+                            tvFans.setText(personInfoBean.getData().getLove()+"\n粉丝");
                             //// TODO: 2017/11/27
                            // tvFans.setText(personInfoBean.getData().getInterest()+"00");
                            // tvFriends.setText(personInfoBean.getData().getTrends()+"00");
