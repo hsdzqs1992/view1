@@ -45,9 +45,9 @@ public class FindPagerAdapter2 extends PagerAdapter {
         titles.add("最新");
         titles.add("关注");
         titles.add("同城");
-        mAdapters.add(new FindZuiXinAdapter(conn,titles));
-        mAdapters.add(new FindGuanZhuAdapter(conn,titles));
-        mAdapters.add(new FindTongChengAdapter(conn,titles));
+        mAdapters.add(new FindZuiXinAdapter(conn));
+        mAdapters.add(new FindGuanZhuAdapter(conn));
+        mAdapters.add(new FindTongChengAdapter(conn));
 
 //        fargments.add(new ZuiXinFragment());
 //        fargments.add(new GuanZhuFragment());
@@ -59,6 +59,20 @@ public class FindPagerAdapter2 extends PagerAdapter {
         findGuanZhuData = homeRecycleBean;
         //int love = ((HomeRecycleBean.DataBean) homeTuijianData.getData().get(position)).getLove();
         mAdapters.get(0).addData(homeRecycleBean.getData());
+    }
+
+    DongTaiBean findZhuiXinData;
+    public void setFindZhuiXinData(DongTaiBean homeRecycleBean){
+        findZhuiXinData = homeRecycleBean;
+        //int love = ((HomeRecycleBean.DataBean) homeTuijianData.getData().get(position)).getLove();
+        mAdapters.get(1).addData(homeRecycleBean.getData());
+    }
+
+    DongTaiBean findTongChengData;
+    public void setFindTongChengData(DongTaiBean homeRecycleBean){
+        findTongChengData = homeRecycleBean;
+        //int love = ((HomeRecycleBean.DataBean) homeTuijianData.getData().get(position)).getLove();
+        mAdapters.get(2).addData(homeRecycleBean.getData());
     }
 
 

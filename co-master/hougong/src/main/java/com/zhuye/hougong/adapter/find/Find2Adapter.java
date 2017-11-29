@@ -6,7 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.zhuye.hougong.R;
+import com.zhuye.hougong.contants.Contants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +48,11 @@ private Context conn;
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
         if(holder instanceof Find2Holder){
-
+           ImageView  iv =  ((Find2Holder)holder).iv;
+            Glide.with(conn).load(Contants.BASE_URL+data.get(position)).into(iv);
+        }else if(holder instanceof Find3Holder){
+            ImageView  iv =  ((Find3Holder)holder).iv;
+            Glide.with(conn).load(Contants.BASE_URL+data.get(position)).into(iv);
         }
 
 

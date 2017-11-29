@@ -39,7 +39,9 @@ public  class FindBaseAdapter extends BaseRecycleAdapter {
 
         //头像
         ImageView ivew = ((ImageView)holder.getView(R.id.find_zuixin_touxiang));
-        Glide.with(conn).load(Contants.BASE_URL + ((DongTaiBean.DataBean)data.get(position)).getFace()).into(ivew);
+        int a = 0;
+        String url = ((DongTaiBean.DataBean)data.get(position)).getFace();
+        Glide.with(conn).load(Contants.BASE_URL + url).into(ivew);
 
         //名称和年龄
         ((TextView)holder.getView(R.id.find_zuixin_name)).setText(((DongTaiBean.DataBean)data.get(position)).getNickname()+"");

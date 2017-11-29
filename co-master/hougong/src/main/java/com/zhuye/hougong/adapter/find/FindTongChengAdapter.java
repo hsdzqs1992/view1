@@ -17,8 +17,12 @@ public class FindTongChengAdapter extends FindBaseAdapter {
         super(conn, data);
     }
 
+    public FindTongChengAdapter(Context conn) {
+        super(conn);
+    }
+
     @Override
     protected void conver(BaseHolder holder, int position) {
-
+        super.conver(holder,position);
     }
 }

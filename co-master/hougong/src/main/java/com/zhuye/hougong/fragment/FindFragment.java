@@ -85,6 +85,9 @@ public class FindFragment extends BaseFragment {
                         DongTaiBean dongTaiBean = gson.fromJson(response.body(),DongTaiBean.class);
                         if(finAdapter!=null){
                             finAdapter.setFindGuanZhuData(dongTaiBean);
+                            finAdapter.setFindGuanZhuData(dongTaiBean);
+                            finAdapter.setFindZhuiXinData(dongTaiBean);
+                           // finAdapter.notifyDataSetChanged();
                         }
 
 

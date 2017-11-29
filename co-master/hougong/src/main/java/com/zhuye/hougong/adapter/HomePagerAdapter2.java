@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -146,6 +147,7 @@ public class HomePagerAdapter2 extends PagerAdapter {
         homeTuijianData = homeRecycleBean;
         //int love = ((HomeRecycleBean.DataBean) homeTuijianData.getData().get(position)).getLove();
 
+        Log.i("iii",homeRecycleBean.getData().toString());
         mAdapters.get(0).addData(homeRecycleBean.getData());
     }
     public void sethomeHuoYueData(HomeRecycleBean homeRecycleBean){

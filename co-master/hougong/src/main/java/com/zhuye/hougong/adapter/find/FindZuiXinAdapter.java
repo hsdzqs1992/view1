@@ -17,9 +17,13 @@ public class FindZuiXinAdapter extends FindBaseAdapter {
         super(conn, data);
     }
 
+    public FindZuiXinAdapter(Context conn) {
+        super(conn);
+    }
+
     @Override
     protected void conver(BaseHolder holder, int position) {
-
+        super.conver(holder,position);
     }
 
     @Override
